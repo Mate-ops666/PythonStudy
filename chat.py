@@ -1,7 +1,9 @@
 import html
 
-import ollama
 import streamlit as st
+from zhipuai import ZhipuAI
+
+client = ZhipuAI(api_key="484ba7f228044a8a86f31b9969d0c110.XJ50PifKp79EdDLe")
 
 st.set_page_config(
     page_title="AI 聊天助手",
@@ -58,7 +60,7 @@ st.markdown(
 
 st.markdown('<div class="main-title">💬 AI 聊天助手</div>', unsafe_allow_html=True)
 st.markdown(
-    '<div class="subtitle">基于本地 Ollama · deepseek-r1:1.5b</div>',
+    '<div class="subtitle">基于智谱 AI · glm-4-flash</div>',
     unsafe_allow_html=True,
 )
 
@@ -98,8 +100,8 @@ if send:
                         f"{file_text}"
                     )
 
-                response = ollama.chat(
-                    model="deepseek-r1:1.5b",
+                response = client.chat.completions.create(
+                    model="glm-4-flash",
                     messages=[
                         {
                             "role": "system",
@@ -108,11 +110,11 @@ if send:
                         {"role": "user", "content": user_content},
                     ],
                 )
-                st.session_state.answer = response["message"]["content"]
+                st.session_state.answer = response.choices[0].message.content
                 st.session_state.last_question = question.strip()
             except Exception as e:
                 st.session_state.answer = ""
-                st.error(f"调用 Ollama 失败：{e}")
+                st.error(f"调用智谱 AI 失败：{e}")
 
 if st.session_state.last_question:
     st.markdown("#### 你的问题")
