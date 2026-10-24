@@ -6,8 +6,7 @@ from zhipuai import ZhipuAI
 st.title("💼 AI 简历优化助手")
 
 # 🚨 这里填你的真实 Key，记得保留两边的英文双引号
-api_key = "484ba7f228044a8a86f31b9969d0c110.XJ50PifKp79EdDLe"
-client = ZhipuAI(api_key=api_key)
+client = ZhipuAI(api_key=st.secrets["ZHIPU_API_KEY"])
 
 # 上传文件
 uploaded_file = st.file_uploader("上传你的简历文本 (仅支持 txt)", type=["txt"])
