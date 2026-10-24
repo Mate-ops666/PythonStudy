@@ -6,14 +6,20 @@ from zhipuai import ZhipuAI
 st.title("💼 AI 简历优化助手")
 
 # 🚨 这里填你的真实 Key，记得保留两边的英文双引号
-api_key = "sk-在这里填你的真实Key"
+api_key = "484ba7f228044a8a86f31b9969d0c110.XJ50PifKp79EdDLe"
 client = ZhipuAI(api_key=api_key)
 
 # 上传文件
 uploaded_file = st.file_uploader("上传你的简历文本 (仅支持 txt)", type=["txt"])
 resume_text = ""
 if uploaded_file is not None:
-    resume_text = uploaded_file.read().decode("utf-8")
+    try:
+        # 第一优先：尝试用国际标准 utf-8 读取
+        resume_text = uploaded_file.read().decode("utf-8")
+    except UnicodeDecodeError:
+        # 如果失败，重置指针，尝试用 Windows 常用的 gbk 读取
+        uploaded_file.seek(0) 
+        resume_text = uploaded_file.read().decode("gbk", errors="ignore")
     st.success("文件读取成功！")
 
 # 输入框
