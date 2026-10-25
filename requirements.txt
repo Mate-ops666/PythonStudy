@@ -1,3 +1,5 @@
 streamlit
 zhipuai
 sniffio
+pdfplumber
+python-docx
