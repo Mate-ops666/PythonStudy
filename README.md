@@ -10,7 +10,7 @@
 - **安全合规**：API Key 存储于 Streamlit Secrets，代码开源无泄露风险。
 
 ## 🚀 在线体验
-点击此处访问我的应用：(把你那个 `https://xxx.streamlit.app` 的网址粘贴在这里)
+点击此处访问我的应用：(https://pythonstudy-idspfxekripl5ttpyohhut.streamlit.app/)
 
 ## 🛠️ 本地运行
 1. 安装依赖：`pip install -r requirements.txt`
